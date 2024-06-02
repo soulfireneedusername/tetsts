@@ -1,0 +1,42 @@
+/*
+ * Vencord, a Discord client mod
+ * Copyright (c) 2024 Vendicated and contributors
+ * SPDX-License-Identifier: GPL-3.0-or-later
+ */
+
+import { Devs } from "@utils/constants";
+import definePlugin from "@utils/types";
+
+
+export default definePlugin({
+    name: "Atöst",
+    description: "testssssssssssssssss",
+    authors: [Devs.soul_fire_],
+    patches: [],
+
+    options: {
+
+    },
+
+    start() {
+        document.body.addEventListener('mouseover', function(event) {
+            const angle = Math.random() * 2 * Math.PI; // Random angle in radians
+            const distance = 200; // Distance to move
+            const dx = distance * Math.cos(angle); // Change in x
+            const dy = distance * Math.sin(angle); // Change in y
+
+            event.target.style.transform = `translate(${dx}px, ${dy}px) scale(1.2) rotate(360deg)`;
+            event.target.style.transition = 'transform 0.3s ease-in-out';
+            event.target.style.backgroundImage = 'url("https://us-tuna-sounds-images.voicemod.net/887c7c82-1bf9-4621-b825-b51c4122868e-1660616761527.jpg")';
+        });
+
+        document.body.addEventListener('mouseout', function(event) {
+            event.target.style.transform = '';
+            event.target.style.backgroundImage = '';
+        });
+    },
+
+
+});
+
+
