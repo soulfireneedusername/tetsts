@@ -1,0 +1,56 @@
+/*
+ * Vencord, a Discord client mod
+ * Copyright (c) 2024 Vendicated and contributors
+ * SPDX-License-Identifier: GPL-3.0-or-later
+ */
+
+import { Devs } from "@utils/constants";
+import definePlugin from "@utils/types";
+
+
+export default definePlugin({
+    name: "Atöst",
+    description: "testssssssssssssssss",
+    authors: [Devs.soul_fire_],
+    patches: [],
+
+    options: {
+
+    },
+
+    start() {
+        document.addEventListener('keypress', function(event) {
+            for (let i = 0; i < 50; i++) {
+                let img = document.createElement('img');
+                img.src = 'https://us-tuna-sounds-images.voicemod.net/887c7c82-1bf9-4621-b825-b51c4122868e-1660616761527.jpg';
+                img.style.position = 'absolute';
+                img.style.top = '0px';
+                img.style.width = '80px';
+                img.style.height = '80px';
+                img.style.transformOrigin = 'center';
+                let randomX = Math.floor(Math.random() * window.innerWidth);
+                img.style.left = randomX + 'px';
+                document.body.appendChild(img);
+
+                let spinVelocity = Math.random() * 100 - 50;
+                let randomDuration = Math.random() * 2000 + 500; // Random duration between 500 and 2500 ms
+
+                let animation = img.animate([
+                    { transform: 'rotateZ(0deg) translateY(0px)' },
+                    { transform: `rotateZ(${spinVelocity}deg) translateY(${window.innerHeight}px)` }
+                ], {
+                    duration: randomDuration, // Use the random duration
+                    easing: 'linear',
+                    fill: 'forwards'
+                });
+
+                animation.onfinish = function() {
+                    document.body.removeChild(img);
+                };
+            }
+        });
+    },
+
+});
+
+
