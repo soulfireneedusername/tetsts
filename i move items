@@ -1,0 +1,52 @@
+/*
+ * Vencord, a Discord client mod
+ * Copyright (c) 2024 Vendicated and contributors
+ * SPDX-License-Identifier: GPL-3.0-or-later
+ */
+
+import { Devs } from "@utils/constants";
+import definePlugin from "@utils/types";
+
+
+export default definePlugin({
+    name: "Atöst",
+    description: "testssssssssssssssss",
+    authors: [Devs.soul_fire_],
+    patches: [],
+
+    options: {
+
+    },
+
+    start() {
+        let currentElement = null;
+        let offsetX = 0;
+        let offsetY = 0;
+
+        document.body.addEventListener('mousedown', function(event) {
+            currentElement = event.target;
+            offsetX = event.clientX - currentElement.getBoundingClientRect().left;
+            offsetY = event.clientY - currentElement.getBoundingClientRect().top;
+        });
+
+        document.body.addEventListener('mousemove', function(event) {
+            if (currentElement) {
+                currentElement.style.position = 'absolute';
+                currentElement.style.left = (event.clientX - offsetX) + 'px';
+                currentElement.style.top = (event.clientY - offsetY) + 'px';
+            }
+        });
+
+        document.body.addEventListener('mouseup', function(event) {
+            if (currentElement) {
+                currentElement.style.left = (event.clientX - offsetX) + 'px';
+                currentElement.style.top = (event.clientY - offsetY) + 'px';
+            }
+            currentElement = null;
+        });
+    },
+
+
+});
+
+
